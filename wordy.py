@@ -7,14 +7,25 @@ import random
 """
 
 def main():
-    print("Welcome to Wordy. You have 6 tries to guess a random 5 letter word.")
     words = []
     with open('5letterwords.txt') as f:
         words = f.readlines()
+    
+    play = "y"
+    while play == "y" or play == "yes":
+        word = startGame(words)
+        playGame(word)
+        print("Play again? y/n: ", end = "")
+        play = str(input())
+
+    print("Goodbye")
+
+def startGame(words):
+    print("Welcome to Wordy. You have 6 tries to guess a random 5 letter word.")
     randomNumber = random.randrange(0, 5786)
     word = str(words[randomNumber].strip())
-    
-    playGame(word)
+    return word
+
 
 def playGame(word):
     # 🟨    🟩   ⬛️
